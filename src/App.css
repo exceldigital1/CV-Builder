@@ -1,0 +1,42 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(22, 22, 22);
+    align-items: center;
+}
+
+form {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background-color: #fff;
+    align-items: center;
+    text-align: center;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px rgba(49, 67, 228, 0.801);
+}
+
+section {
+    margin-bottom: 2rem;
+    width: 800px;
+    margin: 0 auto;
+    flex-shrink: 1;
+}
+
+textarea {
+    min-height: 100px;
+}
+
+input, textarea, select {
+    max-width: 600px;
+    min-width: 400px;
+    align-self: center;
+    display: block;
+    margin: auto;
+    margin-bottom: 10px;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    /* display: block; */
+}
