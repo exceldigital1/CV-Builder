@@ -1,69 +1,79 @@
 export default function Experience({ cvData, setCvData }) {
-  // Handle changes to any input
+
   function handleChange(i, e) {
     const updated = [...cvData.experience];
     updated[i][e.target.name] = e.target.value;
     setCvData({ ...cvData, experience: updated });
   }
 
-  // Add a new experience only if the last one has at least one field filled
+  function handleRoleChange(expIndex, roleIndex, value) {
+    const updated = [...cvData.experience];
+    updated[expIndex].roles[roleIndex] = value;
+    setCvData({ ...cvData, experience: updated });
+  }
+
+  function addRole(expIndex) {
+    const updated = [...cvData.experience];
+    updated[expIndex].roles.push("");
+    setCvData({ ...cvData, experience: updated });
+  }
+
+  function removeRole(expIndex, roleIndex) {
+    const updated = [...cvData.experience];
+    updated[expIndex].roles.splice(roleIndex, 1);
+    setCvData({ ...cvData, experience: updated });
+  }
+
   function addExperience() {
     const lastExp = cvData.experience[cvData.experience.length - 1];
-    const isEmpty = Object.values(lastExp).every(value => value === "");
-    if (isEmpty) return; // Do nothing if last experience is empty
+    const isEmpty = Object.values(lastExp).flat().every(v => v === "");
+    if (isEmpty) return;
 
     setCvData({
       ...cvData,
       experience: [
         ...cvData.experience,
-        { title: "", company: "", date: "", roles: "", achievements: "" }
+        {
+          title: "",
+          company: "",
+          startDate: "",
+          endDate: "",
+          roles: [""],
+          achievements: ""
+        }
       ]
     });
   }
 
   return (
-    <section className="p-4 rounded bg-white">
-      <h2 className="text-gray-700 text-xl mb-4">Experience</h2>
+    <section>
+      <h2 className="text-xl mb-4">Experience</h2>
+
       {cvData.experience.map((exp, i) => (
-        <div key={i} style={{ marginBottom: "1rem" }}>
-          <input
-            name="title"
-            placeholder="Job Title"
-            value={exp.title}
-            onChange={e => handleChange(i, e)}
-          />
-          <input
-            name="company"
-            placeholder="Company"
-            value={exp.company}
-            onChange={e => handleChange(i, e)}
-          />
-          <input
-            name="date"
-            type="date"
-            placeholder="Start Date"
-            value={exp.date}
-            onChange={e => handleChange(i, e)}
-          />
-          <input
-            name="date"
-            type="date"
-            placeholder="end Date"
-            value={exp.date}
-            onChange={e => handleChange(i, e)}
-          />
-          <textarea
-            name="roles"
-            placeholder="Roles"
-            value={exp.roles}
-            onChange={e => handleChange(i, e)}
-          />
+        <div key={i} className="mb-6 border-b pb-4">
+          <input name="title" placeholder="Job Title" value={exp.title} onChange={e => handleChange(i, e)} />
+          <input name="company" placeholder="Company" value={exp.company} onChange={e => handleChange(i, e)} />
+          <input name="startDate" type="date" value={exp.startDate} onChange={e => handleChange(i, e)} />
+          <input name="endDate" type="date" value={exp.endDate} onChange={e => handleChange(i, e)} />
+
+          {exp.roles.map((role, r) => (
+            <div key={r} className="flex gap-2 mb-2">
+              <input
+                placeholder={`Role ${r + 1}`}
+                value={role}
+                onChange={e => handleRoleChange(i, r, e.target.value)}
+              />
+              {exp.roles.length > 1 && (
+                <button type="button" onClick={() => removeRole(i, r)}>✕</button>
+              )}
+            </div>
+          ))}
+
+          <button type="button" onClick={() => addRole(i)}>+ Add role</button>
         </div>
       ))}
 
-      <button type="button" onClick={addExperience}>
-        Add Experience
-      </button>
+      <button type="button" onClick={addExperience}>Add Experience</button>
     </section>
   );
 }

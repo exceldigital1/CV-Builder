@@ -1,42 +1,106 @@
+/* ===== GLOBAL RESET ===== */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: rgb(22, 22, 22);
-    align-items: center;
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(22, 22, 22);
 }
 
+/* ===== FORM CONTAINER ===== */
 form {
-    max-width: 900px;
-    margin: 2rem auto;
-    padding: 1rem;
-    background-color: #fff;
-    align-items: center;
-    text-align: center;
-    border-radius: 0.5rem;
-    box-shadow: 0 0 10px rgba(49, 67, 228, 0.801);
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 0.75rem;
+  box-shadow: 0 0 15px rgba(49, 67, 228, 0.25);
 }
 
-section {
-    margin-bottom: 2rem;
-    width: 800px;
-    margin: 0 auto;
-    flex-shrink: 1;
+/* ===== CV PREVIEW ===== */
+#cv-preview {
+  max-width: 800px;
+  margin: 0 auto;
+  color: #111;
+  line-height: 1.6;
+}
+
+/* ===== SECTIONS ===== */
+main section {
+  margin-top: 2rem;
+}
+
+.section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.25rem;
+  margin-bottom: 1rem;
+  color: #222;
+}
+
+.section-text {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+/* ===== ITEMS (Experience / Education) ===== */
+.item {
+  margin-bottom: 1.5rem;
+}
+
+.item-header {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #000;
+}
+
+.item-sub {
+  font-size: 0.85rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+.achievement {
+  display: block;
+  margin-top: 0.3rem;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+/* ===== INPUTS ===== */
+input,
+textarea,
+select {
+  width: 100%;
+  max-width: 600px;
+  padding: 0.6rem;
+  margin-bottom: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 0.3rem;
+  font-size: 0.9rem;
 }
 
 textarea {
-    min-height: 100px;
+  min-height: 100px;
 }
 
-input, textarea, select {
-    max-width: 600px;
-    min-width: 400px;
-    align-self: center;
-    display: block;
-    margin: auto;
-    margin-bottom: 10px;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 0.25rem;
-    /* display: block; */
+/* ===== PRINT MODE (VERY IMPORTANT) ===== */
+@media print {
+  body {
+    background: white;
+  }
+
+  form {
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  #cv-preview {
+    box-shadow: none;
+    padding: 0;
+  }
 }
